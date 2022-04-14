@@ -1,0 +1,49 @@
+﻿@model Admin.DTOs.UserDTOs.LoginUserDTO
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("Login", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-4 offset-md-4">
+                <div class="login-form mt-4">
+                    <form id="loginForm" method="POST" class="row g-3">
+                        <h4 class=" text-center mb-4">Đăng nhập hệ thống</h4>
+                        <div class="col-12 mb-4">
+                            <label class="mb-2">Tài khoản</label>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input--username", @placeholder = "Nhập tên đăng nhập", @required = "required", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                        <div class="col-12 mb-4">
+                            <label class="mb-2">Mật khẩu</label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input--password", @placeholder = "Nhập mật khẩu", @required = "required", autocomplete = "off" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe"> Ghi nhớ</label>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <button id="BtnLogin" name="BtnLogin" value="Login" type="submit" class="btn btn-dark float-end">Đăng nhập</button>
+                            <button id="BtnReset" name="BtnReset" value="Reset" type="reset" class="btn btn-inf float-end">Nhập lại</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <div id="divMessage" class=" text-center col-md-4 offset-md-4 alert alert-success mt-3 mb-3">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
