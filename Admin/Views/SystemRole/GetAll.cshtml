@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Admin.Models.Role>
+@{
+    ViewBag.Title = "ListRolePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Danh sách Quyền hệ thống</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="~/admin">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Role</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>ListUserPage</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-3">
+        <br />
+        <a class="btn btn-success " href="@Url.Action("Create","SystemRole")"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Thêm mới</span></a>
+        <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp;<span class="bold">Thùng rác(@ViewBag.demrac)</span></a>
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+
+                <div class="ibox-content">
+
+                    <table class="footable table table-stripped toggle-arrow-tiny">
+                        <thead>
+                            <tr>
+                                <th data-toggle="true">STT</th>
+                                <th>Tên Quyền</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.RoleId</td>
+
+                                    <td>
+                                        <a href="@Url.Action("UserDetail","User", new {Id = item.RoleId })">@item.RoleName</a>
+                                    </td>
+                                    
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa">
+                                            <a href="@Url.Action("Update", "User", new { id = item.RoleId })" class="text-white"><i class="fa fa-edit"></i></a>
+                                        </button>
+                                        <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                            <a href="@Url.Action("Delete", "User", new { id = item.RoleId })" class="text-white"><i class="fa fa-trash"></i></a>
+                                        </button>
+                                    </td>
+                                </tr>
+                              
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <ul class="pagination float-right"></ul>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1835,6 +1835,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\SystemRole\Create.cshtml" />
+    <Content Include="Views\SystemRole\GetAll.cshtml" />
+    <Content Include="Views\SystemRole\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
