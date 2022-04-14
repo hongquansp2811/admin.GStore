@@ -51,7 +51,7 @@ namespace Admin.Repositories
 
         public void Delete(T entity)
         {
-            _dbContext.Set<T>().Remove(entity);
+             _dbContext.Set<T>().Remove(entity);
              _dbContext.SaveChanges();
         }
 

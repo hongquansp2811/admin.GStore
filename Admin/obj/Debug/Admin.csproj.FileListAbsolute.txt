@@ -203,3 +203,4 @@ C:\Gstore\admin.GStore\Admin\obj\Debug\Admin.csproj.CoreCompileInputs.cache
 C:\Gstore\admin.GStore\Admin\obj\Debug\Admin.csproj.CopyComplete
 C:\Gstore\admin.GStore\Admin\obj\Debug\Admin.dll
 C:\Gstore\admin.GStore\Admin\obj\Debug\Admin.pdb
+C:\Gstore\admin.GStore\Admin\obj\Debug\Admin.csproj.AssemblyReference.cache
