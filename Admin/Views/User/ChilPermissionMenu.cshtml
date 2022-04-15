@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Admin.DTOs.ModulePermissionDTO>
+    @if ((int)ViewBag.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <li>
+                <a href="@Url.Action("List", item.Tag.ToString())">@item.ModuleName.ToString()</a>
+            </li>
+        }
+    }

@@ -1,5 +1,4 @@
-﻿@model Admin.DTOs.ModulePermissionDTO
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -51,65 +50,7 @@
                         <a href="@Url.Action("Index","Home")"><i class="fa fa-tachometer"></i> <span class="nav-label">Bảng điều khiển</span></a>
 
                     </li>
-                    <li>
-                        <a href="@Url.Action("ListArticlePage","Article")"><i class="fa fa-bars"></i> <span class="nav-label">Bài viết</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("ListArticlePage","Article")">Danh sách bài viết</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index","ArticleType")"><i class="fa fa-sliders"></i> <span class="nav-label">Loại bài viết</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("Index","ArticleType")">Danh sách loại bài viết</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index","ArticleGroup")"><i class="fa fa-sliders"></i> <span class="nav-label">Nhóm bài viết</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("Index","ArticleGroup")">Danh sách nhóm bài viết</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Index","CustomerRegisterLog")"><i class="fa fa-envelope"></i> <span class="nav-label">Email</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("Index","CustomerRegisterLog")">Danh sách Email</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("ListSliderPage","Slider")"><i class="fa fa-sliders"></i> <span class="nav-label">Slider</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("ListSliderPage","Slider")">Danh sách slider</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("ListUserPage","Account")"><i class="fa fa-user"></i> <span class="nav-label">Hệ thống</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="@Url.Action("ListUserPage","Account")">Quản trị viên</a>
-                            </li>
-                            <li>
-                                <a href="@Url.Action("GetAll","SystemRole")">Quyền hệ thống</a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-
+                    @Html.Action("PermissionMenu","User")
                 </ul>
 
             </div>

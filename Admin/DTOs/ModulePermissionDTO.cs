@@ -7,9 +7,10 @@ namespace Admin.DTOs
 {
     public class ModulePermissionDTO
     {
+        public int Id { get; set; }    
         public string UserName { get; set; }
-        public string Module { get; set; }
-        public string Action { get; set; }
-        public bool IsDeleted { get; set; }
+        public string ModuleName { get; set; }
+        public string Tag { get; set; }
+        public int? ParentId { get; set; }
     }
 }

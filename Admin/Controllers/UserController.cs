@@ -42,7 +42,7 @@ namespace Admin.Controllers
         }
 
         [Login]
-        public ActionResult GetAllUser()
+        public ActionResult List()
         {
             var result = _userService.GetAllUsers();
             return View(result);
@@ -53,7 +53,7 @@ namespace Admin.Controllers
         {
             var result = _userService.DeleteUserById(id);
             if (result == true)
-                return RedirectToAction("GetAllUser");
+                return RedirectToAction("List");
             else
                 return View(result);
         }
@@ -70,7 +70,7 @@ namespace Admin.Controllers
         {
             var result = _userService.UpdateUser(user);
             if (result == true)
-                return RedirectToAction("GetAllUser");
+                return RedirectToAction("List");
             else
                 return View(result);
         }
@@ -91,13 +91,14 @@ namespace Admin.Controllers
                 {
                     Session["UserName"] = current.UserName;
                     Session["UserId"] = current.Id;
-                    return RedirectToAction("GetAllUser");
+                    return RedirectToAction("List");
                 }else
                     ViewBag.Message = "User không tồn tại";
             }
             return View();
         }
 
+        [Login]
         public PartialViewResult PermissionMenu()
         {
             var _dbContext = new ApplicationDbContext();
@@ -106,7 +107,23 @@ namespace Admin.Controllers
                 ParameterName = "p_id",
                 Value = Session["UserId"]
             };
-            List<ModulePermissionDTO> data = _dbContext.Database.SqlQuery<ModulePermissionDTO>("exec Proc_Permission @p_id", param).ToList();
+            List<ModulePermissionDTO> listModulePermission = _dbContext.Database.SqlQuery<ModulePermissionDTO>("exec Proc_Permission @p_id", param).ToList();
+            var data = listModulePermission.Where(x => x.ParentId == null).ToList();
+            return PartialView(data);
+        }
+
+        [Login]
+        public PartialViewResult ChilPermissionMenu(int parentId)
+        {
+            var _dbContext = new ApplicationDbContext();
+            var param = new SqlParameter
+            {
+                ParameterName = "p_id",
+                Value = Session["UserId"]
+            };
+            List<ModulePermissionDTO> listModulePermission = _dbContext.Database.SqlQuery<ModulePermissionDTO>("exec Proc_Permission @p_id", param).ToList();
+            var data = listModulePermission.Where(x=>x.ParentId == parentId).ToList();
+            ViewBag.Count = data.Count;
             return PartialView(data);
         }
     }
