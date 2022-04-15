@@ -48,7 +48,7 @@ namespace Admin.Services
 
         public List<User> GetAllUsers()
         {
-            return _userRepository.GetUser().Where(x => x.DeletedAt == null).ToList();
+            return _userRepository.GetAll();
         }
 
         public UserDto GetUserDTOById(int id)

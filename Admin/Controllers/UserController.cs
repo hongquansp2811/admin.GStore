@@ -6,6 +6,7 @@ using Admin.Services;
 using Admin.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -84,13 +85,29 @@ namespace Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _userService.GetAllUsers().FirstOrDefault(x=>x.UserName.Equals(userLogin.UserName) && x.Password.Equals(userLogin.Password));
-                if (result != null)
+                var result = _userService.GetAllUsers();
+                var current = result.FirstOrDefault(x => x.UserName.Equals(userLogin.UserName) && x.Password.Equals(userLogin.Password));
+                if (current != null)
+                {
+                    Session["UserName"] = current.UserName;
+                    Session["UserId"] = current.Id;
                     return RedirectToAction("GetAllUser");
-                else
+                }else
                     ViewBag.Message = "User không tồn tại";
             }
             return View();
+        }
+
+        public PartialViewResult PermissionMenu()
+        {
+            var _dbContext = new ApplicationDbContext();
+            var param = new SqlParameter
+            {
+                ParameterName = "p_id",
+                Value = Session["UserId"]
+            };
+            List<ModulePermissionDTO> data = _dbContext.Database.SqlQuery<ModulePermissionDTO>("exec Proc_Permission @p_id", param).ToList();
+            return PartialView(data);
         }
     }
 }

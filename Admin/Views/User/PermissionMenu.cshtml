@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Admin.DTOs.ModulePermissionDTO>
+@{
+    var ListModule = new List<string>();
+    var ListAction = new List<string>();
+    foreach (var item in Model)
+    {
+        ListModule.Add(item.Module.ToString());
+    }
+    var list = ListModule.Distinct();
+}
+
+
+@foreach (var item in list)
+{
+    var listAction = new List<string>();
+    <li>
+        <a href="@Url.Action("ListArticlePage", "Article")"><i class="fa fa-bars"></i> <span class="nav-label">@item.ToString()</span> <span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            @foreach (var temp in Model)
+            {
+                if (temp.Module.ToString().Equals(item.ToString()) && temp.IsDeleted == false)
+                {
+                    listAction.Add(temp.Action.ToString());
+                }
+            }
+            @foreach (var x in listAction)
+            {
+            <li>
+                <a href="@Url.Action("ListArticlePage", "Article")">@x.ToString()</a>
+            </li>
+            }
+        </ul>
+    </li>
+}
